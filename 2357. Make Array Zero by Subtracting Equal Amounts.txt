@@ -1,0 +1,29 @@
+class Solution {
+    public int minimumOperations(int[] nums) {
+        
+        if(nums.length == 1 && nums[0] != 0){
+            return 1;
+        }
+        // Sorting
+        Arrays.sort(nums);
+        int count = 0;
+        
+        for(int i = 0; i<nums.length; i++){
+            if(nums[i] != 0){
+                helper(nums, nums[i], i+1, nums.length);
+                count++;
+            }
+        }
+        return count;
+        
+    }
+    
+    public void helper(int[] nums, int smallest, int start, int end){
+        while(start < end){
+            nums[start] = nums[start] - smallest;
+            System.out.print(nums[start]);
+            start++;
+        }
+    }
+    
+}
