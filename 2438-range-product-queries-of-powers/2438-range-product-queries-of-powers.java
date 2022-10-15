@@ -2,16 +2,17 @@ class Solution {
     public int[] productQueries(int n, int[][] queries) {
         
         int mod=1000000007;
-        //generating the array based on the given n value  n%2 and n/2 evry time genrating an array of 0 and 1 indcating whether to consdier the index or not and generate the powers array according to the array generated indexes
+       
         List<Integer> arr=new ArrayList<Integer>();
         List<Integer> powers=new ArrayList<Integer>();
         while(n>0){  
             arr.add((int)n%2);
             n/=2;
         }
-         //System.out.print(arr);
+      
         for(int i=0;i<arr.size();i++){
-            if(arr.get(i)==1){  //considering only the arrays of value equals 1 indicating the maximum powers sum to n
+            if(arr.get(i)==1){ 
+                
                 int t=(int)Math.pow(2,i);
                 powers.add(t);
             }
