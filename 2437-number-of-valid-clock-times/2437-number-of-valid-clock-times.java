@@ -8,7 +8,7 @@ class Solution {
         // }
         
         if(time.charAt(0) == '?'){
-            if(time.charAt(1) >= '4' && time.charAt(1) <= '9'){
+            if(time.charAt(1) >= '4'){
                 prod *= 2;
             }
             else{
