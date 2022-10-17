@@ -1,28 +1,15 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-        
-        if(sentence.length() < 26){
-            return false;
+        // We iterate over 'sentence' for 26 times, one for each letter 'currChar'.
+        for (int i = 0; i < 26; ++i) {
+            char currChar = (char)('a' + i);
+
+            // If 'sentence' doesn't contain currChar, it is not a pangram.
+            if (sentence.indexOf(currChar) == -1)
+                return false;
         }
         
-        HashMap<Character, Integer> map = new HashMap<>();
-        
-        for(int i = 0; i<sentence.length(); i++){
-            
-            if(map.containsKey(sentence.charAt(i))){
-                
-                map.put(sentence.charAt(i), map.get(sentence.charAt(i)));
-            }
-            else{
-                map.put(sentence.charAt(i), 1);
-            }
-        }
-        
-        if(map.size() == 26){
-            return true;
-        }
-        
-        return false;
-        
+        // If we manage to find all 26 letters, it is a pangram.
+        return true;
     }
 }
