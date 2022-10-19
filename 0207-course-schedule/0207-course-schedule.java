@@ -30,6 +30,9 @@ class Solution {
                 }
             }
         }
-        return count == numCourses;
+         if(count == numCourses){
+             return true;
+         }
+        return false;
     }
 }
