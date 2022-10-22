@@ -24,13 +24,18 @@ class Solution {
         
     }
     
-    boolean valid(TreeNode node, long start, long end){
-        if (node == null) 
-            return true; 
-        if(start < node.val && end > node.val){
-            return valid(node.left, start, node.val) && valid(node.right, node.val, end);
+    boolean valid(TreeNode root, long start, long end){
+        
+        if(root == null){
+            return true;
         }
+        
+        if(start < root.val && end > root.val){
+            return valid(root.left, start, root.val) && valid(root.right, root.val, end);
+        }
+        
         return false;
+        
     }
     
 }
