@@ -1,26 +1,15 @@
 class Solution {
     public int countGoodStrings(int low, int high, int zero, int one) {
-        int total=0;
-       int dp[]=new int[high+1];
-       Arrays.fill(dp,-1);
-        for(int len=low;len<=high;len++){
-            total=(total+healper(len,zero,one,len,dp))%1000000007;
+        int dp[] = new int[high + 1], res = 0, mod = 1000000007;
+        dp[0] = 1;
+        for (int i = 1; i <= high; ++i) {
+            // if we can add 0 string then add 
+            if (i >= zero) dp[i] = (dp[i] + dp[i - zero]) % mod;
+            // if we can add 1's string i.e i >= len of 1's string
+            if (i >= one) dp[i] = (dp[i] + dp[i - one]) % mod;
+            // if i is in between low and high add 
+            if (i >= low) res = (res + dp[i]) % mod;
         }
-        return total;
-    }
-    public int healper(int n,int zero,int one,int len,int dp[]){
-        if(n==0){
-            return 1;
-        }
-        if(n<0){
-            return 0;
-        }
-        if(dp[n]!=-1){
-            return dp[n];
-        } 
-        //kaam 
-        int way1=healper(n-zero,zero,one,len,dp)%1000000007;
-        int way2=healper(n-one,zero,one,len,dp)%1000000007;
-        return dp[n]=(way1+way2)%1000000007;
+        return res;
     }
 }
