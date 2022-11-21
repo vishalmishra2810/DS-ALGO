@@ -11,7 +11,7 @@ class Solution {
         int[][] directions = new int[][] {{0,1},{0,-1},{1,0},{-1,0}};
 
         int steps = 0;
-        int x, y;
+        // int x, y;
         while (!queue.isEmpty()) {
             steps++;
 
@@ -20,8 +20,8 @@ class Solution {
                 int[] current = queue.poll();
 
                 for (int[] direction : directions) {
-                    x = current[0] + direction[0];
-                    y = current[1] + direction[1];
+                    int x = current[0] + direction[0];
+                    int y = current[1] + direction[1];
 
                     if (x < 0 || x >= rows || y < 0 || y >= columns) continue;
                     if (maze[x][y] == '+') continue;
