@@ -1,36 +1,46 @@
 class Solution {
-    private TreeNode first = null;
-    private TreeNode second = null;
-    private TreeNode pre = null;
+     // Creating three global pointers
+    TreeNode previous = null;
+    TreeNode first = null;
+    TreeNode second = null;
     
     public void recoverTree(TreeNode root) {
-        if(root==null) return;
-
-        //find swapped nodes
-        inorder(root);
+        // Finding the two swapped nodes
+        solve(root);
         
-        //swap the nodes
+        //Swaping the value of nodes
         int temp = first.val;
         first.val = second.val;
         second.val = temp;
     }
-    
-    private void inorder(TreeNode root){
-        if(root==null) return;
-        inorder(root.left);
+     //New Function to find the two nodes
+    public void solve(TreeNode root){
         
-        //find the first node which is at wrong position
-        if(first==null && (pre==null ||pre.val>=root.val)){
-            first = pre;
+        if(root == null){
+            return;
         }
         
-        //find the second node which is at wrong position
-        if(first!=null && pre.val>=root.val){
+        //Doing inorder traversal i.e, sarting from left then right
+        solve(root.left);
+        
+        // If current node is smaller than previous, then previous node is invalid
+        if(previous != null && root.val < previous.val){
+            
+            //Storing previous node
+            if(first == null){
+                first = previous;
+            }
+            
+            //If both nodes are adjacent, save the current node in that case
             second = root;
+            
         }
         
-        //store previus node to compare
-        pre = root;
-        inorder(root.right);
+        //Making current node as previous node
+        previous = root;
+        
+        //Moving to right sub-tree
+        solve(root.right);
+        
     }
 }
